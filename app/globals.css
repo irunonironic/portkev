@@ -1,0 +1,366 @@
+:root {
+    --background: #020403;
+    --foreground: #fffaf3;
+    --muted: #d3d0cc;
+    --kicker: #b4b3b4;
+    --line: rgba(255, 255, 255, 0.08);
+}
+
+::selection {
+    background: rgba(70, 255, 110, 0.5);
+    color: #ffffff;
+}
+
+::-moz-selection {
+    background: rgba(70, 255, 110, 0.5);
+    color: #ffffff;
+}
+
+html,
+body {
+    background: var(--background);
+    height: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+}
+
+body {
+    color: var(--foreground);
+    font-family: var(--font-dm-sans), Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.portfolio-shell {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: var(--background);
+    cursor: default;
+    height: 100dvh;
+    isolation: isolate;
+    overflow: hidden;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    padding-left: clamp(6.5rem, 8vw, 8.5rem);
+    padding-right: clamp(2rem, 5vw, 5rem);
+}
+
+.portfolio-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.72) 0%,
+            rgba(0, 0, 0, 0.56) 32%,
+            rgba(0, 0, 0, 0.18) 68%,
+            rgba(0, 0, 0, 0.08) 100%
+        ),
+        url("/ascii-landscape.png") center / cover no-repeat,
+        var(--background);
+    filter: blur(0.5px);
+    transform: scale(1.008);
+    z-index: -1;
+}
+
+.portfolio-card {
+    color: var(--foreground);
+    max-width: 720px;
+    width: min(720px, 100%);
+    transform: translateY(3.2rem);
+    position: relative;
+    text-align: left;
+    text-transform: lowercase;
+
+    z-index: 2;
+}
+
+.portfolio-kicker {
+    color: var(--kicker);
+    font-size: clamp(0.72rem, 0.95vw, 0.88rem);
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+}
+
+.portfolio-card h1 {
+    color: var(--foreground);
+    font-family: var(--font-instrument-serif), Georgia, serif;
+    font-size: clamp(5rem, 6.5vw, 6.8rem);
+
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 0.9;
+    margin-bottom: 0;
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.9),
+        0 0 24px rgba(0, 0, 0, 0.85);
+}
+
+.portfolio-card h1::after {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 0.18rem;
+    background: rgba(180, 210, 80, 0.75);
+    margin-top: 1.35rem;
+    margin-bottom: 2.45rem;
+}
+
+.portfolio-section {
+    color: rgba(255, 255, 255, 0.82);
+    display: grid;
+    font-family: var(--font-dm-sans), Arial, sans-serif;
+    font-size: clamp(1rem, 1.18vw, 1.15rem);
+    font-weight: 600;
+    gap: 1.18rem;
+    line-height: 1.35;
+    margin-top: 0;
+    text-align: left;
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.9),
+        0 0 24px rgba(0, 0, 0, 0.85);
+}
+
+.portfolio-section p {
+    margin-inline: 0;
+    max-width: 38ch;
+}
+
+.portfolio-section a {
+    color: var(--foreground);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+}
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    margin-top: 2.9rem;
+    justify-content: flex-start;
+}
+
+.social-links a {
+    align-items: center;
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.82);
+    display: inline-flex;
+    font-family: var(--font-dm-sans), Arial, sans-serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    gap: 0.5rem;
+    justify-content: center;
+    letter-spacing: 0;
+    min-height: 2.15rem;
+    min-width: 7.1rem;
+    padding: 0.45rem 0.9rem;
+    text-decoration: none;
+    text-transform: lowercase;
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease,
+        transform 160ms ease;
+}
+
+.social-icon {
+    width: 0.82rem;
+    height: 0.82rem;
+    flex-shrink: 0;
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+    background: rgba(243, 244, 238, 0.1);
+    border-color: rgba(243, 244, 238, 0.26);
+    color: var(--foreground);
+    transform: translateY(-1px);
+}
+
+.leaf-trail {
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: fixed;
+    z-index: 4;
+}
+
+.leaf-trail-item {
+    animation: leaf-fall 1900ms ease-out forwards;
+    background:
+        radial-gradient(
+            circle at 64% 30%,
+            rgba(230, 238, 149, 0.58),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(188, 211, 78, 0.92),
+            rgba(52, 104, 47, 0.8)
+        );
+    border-radius: 100% 0 100% 12%;
+    box-shadow: 0 0 10px rgba(202, 222, 94, 0.24);
+    height: 15px;
+    left: var(--leaf-x);
+    opacity: 0;
+    position: absolute;
+    top: var(--leaf-y);
+    transform: translate(-50%, -50%) rotate(var(--leaf-rotate))
+        scale(var(--leaf-scale));
+    width: 9px;
+}
+
+.leaf-trail-item::after {
+    background: rgba(22, 56, 25, 0.52);
+    content: "";
+    height: 11px;
+    left: 4px;
+    position: absolute;
+    top: 2px;
+    transform: rotate(36deg);
+    width: 1px;
+}
+
+@keyframes leaf-fall {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(var(--leaf-rotate))
+            scale(calc(var(--leaf-scale) * 0.7));
+    }
+
+    12% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(
+                calc(-50% + var(--leaf-drift-x)),
+                calc(-50% + var(--leaf-drift-y))
+            )
+            rotate(calc(var(--leaf-rotate) + 96deg))
+            scale(calc(var(--leaf-scale) * 0.62));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .leaf-trail {
+        display: none;
+    }
+
+    .social-links a {
+        transition: none;
+    }
+}
+
+/* Mobile kept the same */
+@media (max-width: 700px) {
+    .portfolio-shell {
+        background:
+            url("/ascii-art.png") center / cover no-repeat,
+            var(--background);
+        padding: 0 2rem;
+    }
+
+    .portfolio-shell::before {
+        background: none;
+    }
+
+    .portfolio-card {
+        width: 100%;
+        max-width: none;
+    }
+
+    .portfolio-card h1 {
+        font-size: clamp(2.9rem, 13vw, 4.6rem);
+        line-height: 0.95;
+        white-space: nowrap;
+        margin-bottom: 2rem;
+    }
+
+    .portfolio-section {
+        gap: 0.95rem;
+    }
+
+    .social-links {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 0.45rem;
+        margin-top: 2.3rem;
+    }
+
+    .social-links a {
+        min-width: 0;
+        min-height: 2.15rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+    }
+
+    .portfolio-section p {
+        max-width: 18ch;
+    }
+}
+
+@media (max-width: 430px) {
+    .portfolio-card h1 {
+        font-size: clamp(2.5rem, 12vw, 3.8rem);
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 700px) {
+    .social-links {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 0.35rem;
+        margin-top: 2rem;
+    }
+
+    .social-links a {
+        gap: 0.28rem;
+        min-width: 0;
+        min-height: 1.65rem;
+        padding: 0.25rem 0.42rem;
+        font-size: 0.58rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        white-space: nowrap;
+    }
+
+    .social-icon {
+        width: 0.62rem;
+        height: 0.62rem;
+    }
+}
+.portfolio-shell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0) 35%,
+        rgba(0, 0, 0, 0.32) 72%,
+        rgba(0, 0, 0, 0.72) 100%
+    );
+    z-index: 0;
+}
