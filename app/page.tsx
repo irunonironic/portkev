@@ -10,7 +10,7 @@ const socialLinks = [
   },
   {
     label: "Discord",
-    href: "https://discord.com/users/suddenkev",
+    href: "https://discord.com/users/1082094113450631168",
     icon: FaDiscord,
   },
   {
