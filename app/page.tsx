@@ -30,7 +30,7 @@ export default function Home() {
           <p>got a strong product that needs marketing?</p>
           <p>
             email me.{" "}
-            <a href="mailto:kevinsanny347@gmail.com">kevinsanny347@gmail.com</a>
+            <a href="mailto:kevonsocials@gmail.com">kevonsocials@gmail.com</a>
           </p>
         </div>
         <nav className="social-links" aria-label="Social links">
